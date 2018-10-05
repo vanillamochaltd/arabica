@@ -44,7 +44,7 @@ public:
 	// @public_member:
 	// @accessor: Length
 	// @mutator: SetAs
-	// @operator: [], =
+	// @operator: [], =, +
 
 	Index const& Length ()             const;
 	void SetAs(Type const*, Index);
@@ -54,6 +54,8 @@ public:
 
 	Arabica::Array<Type, Index>& operator= (Type const&);
 	Arabica::Array<Type, Index>& operator= (Arabica::Array<Type, Index> const&);
+	Arabica::Array<Type, Index>& operator+ (Type const&);
+	Arabica::Array<Type, Index>& operator+ (Arabica::Array<Type, Index> const&);
 
 	Type& operator[] (Index const&) const;
 
@@ -244,6 +246,49 @@ Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator= (Arabica::Ar
 	this->SetTo(array);
 
 	return *this;
+}
+
+// ---------------------------------------------------------------------
+// @operator: +
+// @class:array
+// @author: carlos l cuenca
+// @parameters: Type
+// @description: Builds and returns an aggregation of an array and Type
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+ (Type const& type){
+
+	Arabica::Array<Type, Index> aggregate(this->size_ + 1);
+	
+	for(Index index = 0; index < aggregate.Length(); index++)
+		aggregate[index] = this->array_[index];
+		
+	aggregate[aggregate.Length() - 1] = type;
+
+	return aggregate;
+}
+
+// ---------------------------------------------------------------------
+// @operator: +
+// @class: array
+// @author carlos l cuenca
+// @parameters: array<Type, Index>
+// @description: Create and Return an aggregate array from the result of
+// combining this array with another
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Arabica::Array<Type, Index> const& array){
+
+	Arabica::Array<Type, Index> aggregate(this->size_ + array.size_);
+	
+	for(Index index = 0; index < this->aggregate.Length(); index++)
+		aggregate[index] = this->array_[index];
+
+	for(Index index = this->length_; index < aggregate.Length(); index++)
+		aggregate[index] = array[index];
+	
+	return aggregate;
+	
 }
 
 // -------------------------------------------------------
