@@ -9,6 +9,12 @@ Base library for c++ code
 * **Define a flexible model as a base for expansion and allow tailoring of data structures and algorithms**
 * **Improve readability and reference for future projects**
 
+## Implementation Standard
+
+The code in this repository abides by the following standard(s)
+
+* **c++11**
+
 ## Current Implementation
 
 * **Array (Base)**
