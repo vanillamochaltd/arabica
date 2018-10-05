@@ -252,8 +252,8 @@ Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator= (Arabica::Ar
 // @author: carlos l cuenca
 // @parameters: output stream, array
 // @description: prints out the array to the output stream
-template<typename Type, typename Index>
 
+template<typename Type, typename Index>
 std::ostream& Arabica::operator<< (std::ostream& outputstream, Arabica::Array<Type, Index> const& array){
 
 	for(Index index = 0; index < array.Length(); index++)
