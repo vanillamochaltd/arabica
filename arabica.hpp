@@ -15,33 +15,24 @@
 // and algorithms
 
 namespace Arabica{
-
-    // ----------
-    // Type alias
-
-    typedef uint64_t Scalar    ;
-    typedef uint64_t Quantity  ;
-    typedef uint64_t Index     ;
-    typedef bool     Boolean   ;
-    typedef char     Character ;
-
-	// ---------------
-	// Data Structures
+	
+    // ---------------
+    // Data Structures
 
     template<typename Type, typename Index>
     class Array;
 
-	template<typename Type, typename Index>
-	class StaticArray;
+    template<typename Type, typename Index>
+    class StaticArray;
 
-	template<typename Type, typename Index>
-	class DynamicArray;
+    template<typename Type, typename Index>
+    class DynamicArray;
 
-	// -----------------
-	// Utility Functions
+    // -----------------
+    // Utility Functions
 
-	template<typename Type, typename Index>
-	std::ostream& operator<< (std::ostream&, Array<Type, Index> const&);
+    template<typename Type, typename Index>
+    std::ostream& operator<< (std::ostream&, Array<Type, Index> const&);
 
 
 };
