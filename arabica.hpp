@@ -6,6 +6,7 @@
 #ifndef ARABICA_HPP
 #define ARABICA_HPP
 
+#include <iostream>
 #include <cinttypes>
 
 // ----------------------------------------------------
