@@ -11,7 +11,7 @@ Base library for c++ code
 
 ## Implementation Standard
 
-The code in this repository abides by the following standard(s)
+The code in this repository will follow the/these standard(s)
 
 * **c++11**
 
