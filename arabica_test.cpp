@@ -7,13 +7,14 @@
 #include "arabica.hpp"
 #include "array.hpp"
 
+// TODO: Change the test cases
 int main(int argument_count, char* argument_table[]){
 
 	const int ARRAY_SIZE = 32;
 
 	Arabica::Array<char, uint32_t> arguments;
 
-	const char char_array[] = {'t','i','t','t','i','e','s'};
+	const char char_array[] = {'h','e','l','l','o'};
 
 	Arabica::Array<int, uint32_t> array(ARRAY_SIZE);
 	Arabica::Array<int, uint32_t> beta(ARRAY_SIZE + ARRAY_SIZE);
@@ -37,7 +38,7 @@ int main(int argument_count, char* argument_table[]){
 
 	std::cout << std::endl;
 
-	arguments.SetAs(char_array, 7);
+	arguments.SetAs(char_array, 6);
 
 	std::cout << arguments << std::endl;
 
