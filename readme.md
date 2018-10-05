@@ -6,7 +6,7 @@ Base library for c++ code
 
 * **Implement Template Class Code Base for general-purpose use in software projects**
 * **Define a uniform interface for commonly used data structure operations**
-* **Define a flexible model as a base for expansion and allow tailoring of data structures and algorithms **
+* **Define a flexible model as a base for expansion and allow tailoring of data structures and algorithms**
 * **Improve readability and reference for future projects**
 
 ## Current Implementation
