@@ -31,14 +31,34 @@ int main(int argument_count, char* argument_table[]){
 
 	std::cout << alpha + beta << std::endl;
 	std::cout << beta + alpha << std::endl;
+	std::cout << std::endl;
+
+	std::cout << alpha + 10 << std::endl;
+	std::cout << beta + 666 << std::endl;
+	std::cout << std::endl;
 
 	std::cout << alpha << std::endl;
 	std::cout << beta << std::endl;
+	std::cout << std::endl;
 
 	std::cout << "Testing += operator" << std::endl;
 	std::cout << std::endl;
 
-	Arabica::Array<uint32_t, uint32_t> gamme(alpha);
+	alpha += 10;
+	beta  += 666;
+
+	std::cout << alpha << std::endl;
+	std::cout << beta  << std::endl;
+
+	Arabica::Array<uint32_t, uint32_t> gamma(alpha);
+
+	gamma += alpha;
+
+	std::cout << gamma << std::endl;
+
+	gamma += beta;
+
+	std::cout << gamma << std::endl;
 
 	return 0;
 }

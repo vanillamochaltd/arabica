@@ -305,7 +305,7 @@ Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Arabica::Arr
 template<typename Type, typename Index>
 Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+= (Type const& type){
 
-	Type* aggregate = new Type[this->size_ + 1];
+	Type* aggregate = new Type[this->size_ + 1]();
 
 	for(Index index = 0; index < this->length_; index++)
 		aggregate[index] = this->array_[index];
@@ -320,6 +320,33 @@ Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+= (Type const
 
 	return *this;
 
+}
+
+// ------------------------------------------------------------------
+// @operator: +=
+// @class: array
+// @author: carlos l cuenca
+// @parameters: Array<Type, Index>&
+// @description: Append the given array of Type to the current array
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+= (Arabica::Array<Type, Index> const& array){
+
+	Type* aggregate = new Type[this->size_ + array.size_]();
+
+	for(Index index = 0; index < this->length_; index++)
+		aggregate[index] = this->array_[index];
+
+	for(Index index = 0; index < array.length_; index++)
+		aggregate[this->length_ + index] = array.array_[index];
+
+	if(this->array_) delete[] this->array_;
+
+	this->array_   = aggregate;
+	this->length_ += array.length_;
+	this->size_   += array.size_;
+
+	return *this;
 }
 
 // -------------------------------------------------------

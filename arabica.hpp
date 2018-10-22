@@ -32,7 +32,6 @@ namespace Arabica{
     template<typename Type, typename Index>
     std::ostream& operator<< (std::ostream&, Array<Type, Index> const&);
 
-
 };
 
 #endif
