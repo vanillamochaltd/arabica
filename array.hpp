@@ -54,8 +54,8 @@ public:
 
 	Arabica::Array<Type, Index>& operator= (Type const&);
 	Arabica::Array<Type, Index>& operator= (Arabica::Array<Type, Index> const&);
-	Arabica::Array<Type, Index>& operator+ (Type const&);
-	Arabica::Array<Type, Index>& operator+ (Arabica::Array<Type, Index> const&);
+	Arabica::Array<Type, Index> operator+ (Type const&);
+	Arabica::Array<Type, Index> operator+ (Arabica::Array<Type, Index> const&);
 
 	Type& operator[] (Index const&) const;
 
@@ -256,7 +256,7 @@ Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator= (Arabica::Ar
 // @description: Builds and returns an aggregation of an array and Type
 
 template<typename Type, typename Index>
-Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+ (Type const& type){
+Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Type const& type){
 
 	Arabica::Array<Type, Index> aggregate(this->size_ + 1);
 	
