@@ -54,6 +54,7 @@ public:
 
 	Arabica::Array<Type, Index>& operator= (Type const&);
 	Arabica::Array<Type, Index>& operator= (Arabica::Array<Type, Index> const&);
+
 	Arabica::Array<Type, Index> operator+ (Type const&);
 	Arabica::Array<Type, Index> operator+ (Arabica::Array<Type, Index> const&);
 
