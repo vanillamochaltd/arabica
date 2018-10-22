@@ -52,13 +52,16 @@ public:
 	// --------------------
 	// Overloaded Operators
 
+	Type& operator[] (Index const&) const;
+
 	Arabica::Array<Type, Index>& operator= (Type const&);
 	Arabica::Array<Type, Index>& operator= (Arabica::Array<Type, Index> const&);
 
-	Arabica::Array<Type, Index> operator+ (Type const&);
-	Arabica::Array<Type, Index> operator+ (Arabica::Array<Type, Index> const&);
+	Arabica::Array<Type, Index>  operator+ (Type const&);
+	Arabica::Array<Type, Index>  operator+ (Arabica::Array<Type, Index> const&);
 
-	Type& operator[] (Index const&) const;
+	Arabica::Array<Type, Index>& operator+= (Type const&);
+	Arabica::Array<Type, Index>& operator+= (Arabica::Array<Type, Index> const&);
 
 	// ----------------
 	// Friend Functions
@@ -96,7 +99,7 @@ Arabica::Array<Type, Index>::Array(Index length): array_(0x00), size_(0), length
 // values of the block from that array
 
 template<typename Type, typename Index>
-Arabica::Array<Type, Index>::Array(Arabica::Array<Type, Index> const& array){
+Arabica::Array<Type, Index>::Array(Arabica::Array<Type, Index> const& array): array_(0x00), size_(0), length_(0){
 
 	this->SetTo(array);
 
@@ -282,14 +285,41 @@ Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Arabica::Arr
 
 	Arabica::Array<Type, Index> aggregate(this->size_ + array.size_);
 	
-	for(Index index = 0; index < this->aggregate.Length(); index++)
+	for(Index index = 0; index < this->length_; index++)
 		aggregate[index] = this->array_[index];
 
-	for(Index index = this->length_; index < aggregate.Length(); index++)
-		aggregate[index] = array[index];
+	for(Index index = 0; index < array.length_; index++)
+		aggregate[this->length_ + index] = array[index];
 	
 	return aggregate;
 	
+}
+
+// ----------------------------------------------------------
+// @operator: +=
+// @class: array
+// @author: carlos l cuenca
+// @parameters: Type
+// @description: Append the data of Type to the current array
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index>& Arabica::Array<Type, Index>::operator+= (Type const& type){
+
+	Type* aggregate = new Type[this->size_ + 1];
+
+	for(Index index = 0; index < this->length_; index++)
+		aggregate[index] = this->array_[index];
+
+	aggregate[this->length_] = type;
+
+	if(this->array_) delete[] this->array_;
+
+	this->array_ = aggregate;
+	this->length_++;
+	this->size_++;
+
+	return *this;
+
 }
 
 // -------------------------------------------------------

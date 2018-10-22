@@ -12,36 +12,33 @@ int main(int argument_count, char* argument_table[]){
 
 	const int ARRAY_SIZE = 32;
 
-	Arabica::Array<char, uint32_t> arguments;
+	Arabica::Array<uint32_t, uint32_t> alpha(ARRAY_SIZE);
+    Arabica::Array<uint32_t, uint32_t> beta(ARRAY_SIZE);
 
-	const char char_array[] = {'h','e','l','l','o'};
-
-	Arabica::Array<int, uint32_t> array(ARRAY_SIZE);
-	Arabica::Array<int, uint32_t> beta(ARRAY_SIZE + ARRAY_SIZE);
-
-	for(int index = 0; index < array.Length(); index++){
-		array[index] = index;
-		beta[index] = index + 8;
-	}
-
-	std::cout << array << std::endl;
-
-	std::cout << beta << std::endl;
-
-	array = 345;
-
-	std::cout << array << std::endl;
-
-	array = beta;
-
-	std::cout << array << std::endl;
-
+	std::cout << "Testing Array" << std::endl;
 	std::cout << std::endl;
 
-	arguments.SetAs(char_array, 6);
+	for(uint32_t index = 0; index < ARRAY_SIZE; index++){
+		alpha[index] = index + 3;
+		beta[index]  = index + 4;
+	}
 
-	std::cout << arguments << std::endl;
+	std::cout << alpha << std::endl;
+	std::cout << beta  << std::endl;
+
+	std::cout << "Testing + operator" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << alpha + beta << std::endl;
+	std::cout << beta + alpha << std::endl;
+
+	std::cout << alpha << std::endl;
+	std::cout << beta << std::endl;
+
+	std::cout << "Testing += operator" << std::endl;
+	std::cout << std::endl;
+
+	Arabica::Array<uint32_t, uint32_t> gamme(alpha);
 
 	return 0;
-
 }
