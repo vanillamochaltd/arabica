@@ -24,9 +24,6 @@ namespace Arabica{
     class Array;
 
     template<typename Type, typename Index>
-    class StaticArray;
-
-    template<typename Type, typename Index>
     class DynamicArray;
 
     // -----------------
