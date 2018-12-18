@@ -263,10 +263,10 @@ template<typename Type, typename Index>
 Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Type const& type){
 
 	Arabica::Array<Type, Index> aggregate(this->size_ + 1);
-	
+
 	for(Index index = 0; index < aggregate.Length(); index++)
 		aggregate[index] = this->array_[index];
-		
+
 	aggregate[aggregate.Length() - 1] = type;
 
 	return aggregate;
@@ -284,15 +284,15 @@ template<typename Type, typename Index>
 Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Arabica::Array<Type, Index> const& array){
 
 	Arabica::Array<Type, Index> aggregate(this->size_ + array.size_);
-	
+
 	for(Index index = 0; index < this->length_; index++)
 		aggregate[index] = this->array_[index];
 
 	for(Index index = 0; index < array.length_; index++)
 		aggregate[this->length_ + index] = array[index];
-	
+
 	return aggregate;
-	
+
 }
 
 // ----------------------------------------------------------

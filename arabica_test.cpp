@@ -13,14 +13,16 @@ int main(int argument_count, char* argument_table[]){
 	const int ARRAY_SIZE = 32;
 
 	Arabica::Array<uint32_t, uint32_t> alpha(ARRAY_SIZE);
-    Arabica::Array<uint32_t, uint32_t> beta(ARRAY_SIZE);
+	Arabica::Array<uint32_t, uint32_t> beta(ARRAY_SIZE);
 
 	std::cout << "Testing Array" << std::endl;
 	std::cout << std::endl;
 
 	for(uint32_t index = 0; index < ARRAY_SIZE; index++){
+	
 		alpha[index] = index + 3;
 		beta[index]  = index + 4;
+	
 	}
 
 	std::cout << alpha << std::endl;
