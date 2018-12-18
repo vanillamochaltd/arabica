@@ -16,7 +16,7 @@
 // and algorithms
 
 namespace Arabica{
-	
+
     // ---------------
     // Data Structures
 
