@@ -16,7 +16,7 @@
 template<typename Type, typename Index>
 class Arabica::Array{
 
-private:
+protected:
 
 	// -----------------------------
 	// @private_member:
@@ -264,7 +264,7 @@ Arabica::Array<Type, Index> Arabica::Array<Type, Index>::operator+ (Type const& 
 
 	Arabica::Array<Type, Index> aggregate(this->size_ + 1);
 
-	for(Index index = 0; index < aggregate.Length(); index++)
+	for(Index index = 0; index < this->length_; index++)
 		aggregate[index] = this->array_[index];
 
 	aggregate[aggregate.Length() - 1] = type;

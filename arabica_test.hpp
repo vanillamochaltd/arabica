@@ -35,6 +35,8 @@ namespace ArabicaTest{
 	template<typename Type, typename Index>
 	StatusCode TestArray ();
 
+	template<typename Type, typename Index>
+	StatusCode TestDynamicArray();
 
 };
 
@@ -46,11 +48,11 @@ ArabicaTest::StatusCode ArabicaTest::TestArray(){
 	Arabica::Array<Type, Index> alpha (ARRAY_SIZE);
 	Arabica::Array<Type, Index> beta  (ARRAY_SIZE);
 
-	std::cout << ArabicaTest::LOG_DIVIDER_THICK << "\n" << std::endl;
+	std::cout << ArabicaTest::LOG_DIVIDER_THICK << std::endl;
 	std::cout << "Testing Array\n" << std::endl;
 
-	for(ArabicaTest::Word index = 0x0; index < ARRAY_SIZE; index){
-	
+	for(ArabicaTest::Word index = 0x0; index < ARRAY_SIZE; index++){
+
 		alpha[index] = index + 3;
 		beta[index]  = index + 4;
 
@@ -97,6 +99,25 @@ ArabicaTest::StatusCode ArabicaTest::TestArray(){
 
 	return 0;
 
+
+}
+
+template<typename Type, typename Index>
+ArabicaTest::StatusCode ArabicaTest::TestDynamicArray(){
+
+	const ArabicaTest::Word ARRAY_SIZE = 0x20;
+
+	std::cout << ArabicaTest::LOG_DIVIDER_THICK << std::endl;
+	std::cout << "Testing Dynamic Array\n" << std::endl;
+
+	Arabica::DynamicArray<Type, Index> alpha (ARRAY_SIZE);
+	Arabica::DynamicArray<Type, Index> beta  (ARRAY_SIZE);
+
+
+
+
+
+	return 0;
 
 }
 
