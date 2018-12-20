@@ -43,7 +43,7 @@ public:
 	// -----------------
 	// @public_member:
 	// @accessor: Length
-	// @mutator: SetAs
+	// @mutator: SetTo
 	// @operator: [], =, +
 
 	Index const& Length ()             const;
@@ -177,7 +177,7 @@ Index const& Arabica::Array<Type, Index>::Length() const{
 }
 
 // --------------------------------------------------
-// @method: Length
+// @method: SetTo
 // @class: array
 // @author: carlos l cuenca
 // @parameters: pointer to array, count
