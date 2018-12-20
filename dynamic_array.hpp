@@ -63,9 +63,8 @@ Arabica::DynamicArray<Type, Index>::DynamicArray(Index length): Arabica::Array<T
 // for it to be called properly per multiple inheritence
 
 template<typename Type, typename Index>
-Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Index> const& array): Arabica::Array<Type, Index>(array),
-													growth_rate_(0x0){
-	this->growth_rate = 0x2;
+Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Index> const& array): Arabica::Array<Type, Index>(array){
+
 
 }
 

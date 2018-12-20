@@ -47,7 +47,7 @@ public:
 	// @operator: [], =, +
 
 	Index const& Length ()             const;
-	void SetAs(Type const*, Index);
+	void SetTo(Type const*, Index);
 
 	// --------------------
 	// Overloaded Operators
@@ -185,7 +185,7 @@ Index const& Arabica::Array<Type, Index>::Length() const{
 // primitive array
 
 template<typename Type, typename Index>
-void Arabica::Array<Type, Index>::SetAs(Type const* array, Index length){
+void Arabica::Array<Type, Index>::SetTo(Type const* array, Index length){
 
 	this->Release();
 
