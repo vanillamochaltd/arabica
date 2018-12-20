@@ -14,15 +14,7 @@
 // @description: dynamic array implementation
 
 template<typename Type, typename Index>
-class Arabica::DynamicArray: Arabica::Array<Type, Index>{
-
-private:
-
-	// --------------------------
-	// @private_member:
-	// @growth_rate_: growth rate
-	
-	static float growth_rate_;
+class Arabica::DynamicArray: public Arabica::Array<Type, Index>{
 
 public:
 
@@ -31,7 +23,13 @@ public:
 	
 	DynamicArray(Index=0x0);
 	DynamicArray(Arabica::DynamicArray<Type, Index> const&);
-	~DynamicArray();	
+	~DynamicArray();
+
+	// ----------------------
+	// @public_method:
+	// @mutator: ChangeGrowth
+	
+	inline static void ChangeGrowth(float);	
 
 };
 
@@ -46,9 +44,7 @@ public:
 // for it to be called properly per multiple inheritence
 
 template<typename Type, typename Index>
-Arabica::DynamicArray<Type, Index>::DynamicArray(Index length): Arabica::Array<Type, Index>(length), growth_rate_(0x0){
-
-	this->growth_rate_ = 0x2;
+Arabica::DynamicArray<Type, Index>::DynamicArray(Index length): Arabica::Array<Type, Index>(length){
 
 }
 
@@ -78,5 +74,19 @@ Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Ind
 
 template<typename Type, typename Index>
 Arabica::DynamicArray<Type, Index>::~DynamicArray(){}
+
+// -------------------------------------------------------
+// @method: ChangeGrowth
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: -
+// @description: Changes the growth rate of dynamic arrays
+
+template<typename Type, typename Index>
+void Arabica::DynamicArray<Type, Index>::ChangeGrowth(float growth_rate){
+
+	Arabica::Dynamic_Array_Growth = growth_rate;
+
+}
 
 #endif
