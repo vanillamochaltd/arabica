@@ -16,6 +16,11 @@
 template<typename Type, typename Index>
 class Arabica::DynamicArray: public Arabica::Array<Type, Index>{
 
+private:
+
+	inline void GrowPast(Index);
+	inline void SetTo(Arabica::Array<Type, Index> const&);
+
 public:
 
 	// -------------------
@@ -29,7 +34,20 @@ public:
 	// @public_method:
 	// @mutator: ChangeGrowth
 	
-	inline static void ChangeGrowth(float);	
+	inline static void ChangeGrowth(float);
+	void SetTo(Type const*, Index);	
+
+	// --------------------
+	// overloaded operators
+	
+	Arabica::Array<Type, Index>& operator=  (Type const&);
+	Arabica::Array<Type, Index>& operator=  (Arabica::Array<Type, Index> const&);
+
+	Arabica::Array<Type, Index>  operator+  (Type const&);
+	Arabica::Array<Type, Index>  operator+  (Arabica::Array<Type, Index> const&);
+
+	Arabica::Array<Type, Index>& operator+= (Type const&);
+	Arabica::Array<Type, Index>& operator+= (Arabica::Array<Type, Index> const&);
 
 };
 
