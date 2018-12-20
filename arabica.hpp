@@ -17,20 +17,27 @@
 
 namespace Arabica{
 
-    // ---------------
-    // Data Structures
+	
+	// -------------------
+	// Framework Variables
+	
+	static const float Dynamic_Array_Growth = 1.5f;
 
-    template<typename Type, typename Index>
-    class Array;
 
-    template<typename Type, typename Index>
-    class DynamicArray;
+	// ---------------
+	// Data Structures
 
-    // -----------------
-    // Utility Functions
+	template<typename Type, typename Index>
+	class Array;
 
-    template<typename Type, typename Index>
-    std::ostream& operator<< (std::ostream&, Array<Type, Index> const&);
+	template<typename Type, typename Index>
+	class DynamicArray;
+
+	// -----------------
+	// Utility Functions
+
+	template<typename Type, typename Index>
+	std::ostream& operator<< (std::ostream&, Array<Type, Index> const&);
 
 };
 

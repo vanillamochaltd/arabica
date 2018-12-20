@@ -22,7 +22,7 @@ private:
 	// @private_member:
 	// @growth_rate_: growth rate
 	
-	Index growth_rate_;
+	static float growth_rate_;
 
 public:
 
