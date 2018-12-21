@@ -23,9 +23,9 @@ private:
 	// @mutator: GrowPast, SetTo
 
 	inline void GrowPast(Index);
-	inline void SetTo(Arabica::Array<Type, Index> const&);
 	static Type* GrowLinear(Index&, Index);
 	static Type* GrowExponential(Index&, Index);
+	inline void SetTo(Arabica::Array<Type, Index> const&);
 
 public:
 
@@ -68,9 +68,11 @@ public:
 // for it to be called properly per multiple inheritence
 
 template<typename Type, typename Index>
-Arabica::DynamicArray<Type, Index>::DynamicArray(Index length): Arabica::Array<Type, Index>(length){
+Arabica::DynamicArray<Type, Index>::DynamicArray(Index length){
 
+	if(length) this->GrowPast(length);
 
+	this->length_ = length;
 }
 
 // --------------------------------------------------------------------
@@ -84,8 +86,9 @@ Arabica::DynamicArray<Type, Index>::DynamicArray(Index length): Arabica::Array<T
 // for it to be called properly per multiple inheritence
 
 template<typename Type, typename Index>
-Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Index> const& array): Arabica::Array<Type, Index>(array){
+Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Index> const& array){
 
+	this->SetTo(array);
 
 }
 
@@ -98,7 +101,11 @@ Arabica::DynamicArray<Type, Index>::DynamicArray(Arabica::DynamicArray<Type, Ind
 // 'delete' keyword
 
 template<typename Type, typename Index>
-Arabica::DynamicArray<Type, Index>::~DynamicArray(){}
+Arabica::DynamicArray<Type, Index>::~DynamicArray(){
+
+	this->Release();
+
+}
 
 // -------------------------------------------------------
 // @method: ChangeGrowth
@@ -126,10 +133,10 @@ template<typename Type, typename Index>
 void Arabica::DynamicArray<Type, Index>::GrowPast(Index size){
 
 	Arabica::Array<Type, Index> buffer(*this);
-	
-	if(this->size_) delete[] this->array_;
 
-	else this->size_ = 0x1;
+	if(this->size_) delete[] this->array_;
+	
+	else this->size_ = 0x2;
 
 	this->array_ = GrowLinear(this->size_, size);
 
@@ -147,7 +154,7 @@ void Arabica::DynamicArray<Type, Index>::GrowPast(Index size){
 
 template<typename Type, typename Index>
 Type* Arabica::DynamicArray<Type, Index>::GrowLinear(Index& current_size, Index target_size){
-
+	
 	while(current_size <= target_size) current_size *= Arabica::Dynamic_Array_Growth;
 
 	Type* array = new Type[current_size]();
@@ -177,6 +184,26 @@ Type* Arabica::DynamicArray<Type, Index>::GrowExponential(Index& current_size, I
 	Type* array = new Type[current_size]();
 
 	return array;
+
+}
+
+// -------------------------------------------------
+// @method: SetTo
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: current size, target size
+// @description: Sets the current state of the array
+// to the given array
+
+template<typename Type, typename Index>
+void Arabica::DynamicArray<Type, Index>::SetTo(Arabica::Array<Type, Index> const& array){
+
+	if(this->size_ < array.size_) this->GrowPast(array.size_);
+
+	for(Index index = 0x0; index < array.length_; index++)
+		this->array_[index] = array[index];
+
+	this->length_ = array.length_;
 
 }
 
