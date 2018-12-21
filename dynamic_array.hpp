@@ -207,4 +207,17 @@ void Arabica::DynamicArray<Type, Index>::SetTo(Arabica::Array<Type, Index> const
 
 }
 
+// -------------------------------------------------------
+// @method: SetTo
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: array, length
+// @description: Sets the current state to the given array
+
+template<typename Type, typename Index>
+void Arabica::DynamicArray<Type, Index>::SetTo(Type const* array, Index length){
+
+
+}
+
 #endif
