@@ -26,6 +26,7 @@ private:
 	static Type* GrowLinear(Index&, Index);
 	static Type* GrowExponential(Index&, Index);
 	inline void SetTo(Arabica::Array<Type, Index> const&);
+	void Append(Type const&);
 
 public:
 
@@ -217,6 +218,114 @@ void Arabica::DynamicArray<Type, Index>::SetTo(Arabica::Array<Type, Index> const
 template<typename Type, typename Index>
 void Arabica::DynamicArray<Type, Index>::SetTo(Type const* array, Index length){
 
+	if(this->size_ < length) this->GrowPast(length);
+
+	for(Index index = 0x0; index < length; index++)
+		this->array_[index] = array[index];
+
+	this->length_ = length;
+
+}
+
+// ------------------------------------------------------------
+// @method: Append
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: Type
+// @description: appends the given element to the current state
+
+template<typename Type, typename Index>
+void Arabica::DynamicArray<Type, Index>::Append(Type const& type){
+
+	if(this->length_ == this->size_) this->GrowPast(this->size_ + 1);
+
+	this->array_[this->length_] = type;
+
+	this->length_++;
+
+}
+
+// -----------------------------------------------
+// @operator: =
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: Type
+// @description: Sets the array to single element 
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index>& Arabica::DynamicArray<Type, Index>::operator= (Type const& type){
+
+	this->Release();
+
+	this->array_    = new Type[2] ;
+	*(this->array_) = type        ;
+	this->size      = 2           ;
+	this->length_   = 1           ;
+
+	return *this;
+
+}
+
+// -------------------------------------------------------
+// @operator: =
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: Array<Type, Index>
+// @description: Sets the current state to the given array
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index>& Arabica::DynamicArray<Type, Index>::operator= (Arabica::Array<Type, Index> const& array){
+
+	this->SetTo(array);
+
+	return *this;
+
+}
+
+// ------------------------------------------------------
+// @operator: +
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: array
+// @description: Appends the element to the current state
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index> Arabica::DynamicArray<Type, Index>::operator+ (Type const& type){
+
+	Index aggregate_size = this->size_ * Arabica::Dynamic_Array_Growth; 
+
+	Arabica::DynamicArray<Type, Index> aggregate(aggregate_size);
+
+	for(Index index = 0x0; index < this->length_; index++)
+		aggregate[index] = this->array_[index];
+
+	aggregate[aggregate.Length() - 1] = type;
+
+	return aggregate;
+
+}
+
+// ------------------------------------------------------------
+// @operator: +
+// @class: dynamic array
+// @author: carlos l cuenca
+// @parameters: array<Type, Index>
+// @description: aggregate the given array to the current state
+
+template<typename Type, typename Index>
+Arabica::Array<Type, Index> Arabica::DynamicArray<Type, Index>::operator+ (Arabica::Array<Type, Index> const& array){
+
+	Index aggregate_size = this->size_ * Arabica::Dynamic_Array_Growth;
+
+	Arabica::DynamicArray<Type, Index> aggregate(aggregate_size);
+
+	for(Index index = 0x0; index < this->length_; index++)
+		aggregate[index] = this->array_[index];
+
+	for(Index index = 0x0; index < array.length_; index++)
+		aggregate[this->length_ + index] = array[index];
+
+	return aggregate;
 
 }
 
